@@ -38,7 +38,7 @@ app.get('/test', (request, response) => {
     }
     response.json(user);
   });
-  response.send("got your token 🍕");
+  response.send("HIIIII");
 });
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
