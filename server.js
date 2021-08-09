@@ -5,8 +5,16 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
-
+const mongoose=require('mongoose');
+mongoose.connect("mongodb://127.0.0.1:27017/books", { useNewUrlParser: true , useUnifiedTopology: true });
+mongoose.set('useCreateIndex', true);
 const app = express();
+const {getBooks}=require('./controller/book.controller');
+
+const {seedUserCollection}=require('./models/user.model');
+
+app.get('/books',getBooks);
+
 app.use(cors());
 
 const PORT = process.env.PORT || 3001;
