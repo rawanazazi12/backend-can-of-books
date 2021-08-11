@@ -65,7 +65,7 @@ const seedUserCollection = () => {
           email: 'tashtoshqusai@gmail.com'
         }
       ]
-// 
+
     })
     firstUser.save();
     secondUser.save();
