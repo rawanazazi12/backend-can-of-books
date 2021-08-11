@@ -6,21 +6,23 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
 const mongoose=require('mongoose');
-mongoose.connect("mongodb://127.0.0.1:27017/books", { useNewUrlParser: true , useUnifiedTopology: true });
+mongoose.connect("mongodb://127.0.0.1:27017/bookss", { useNewUrlParser: true , useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
 const app = express();
 app.use(cors());
-const {getBooks}=require('./controller/book.controller');
-const {createBook}=require('./controller/book.controller');
+const {getBooks, createBook, deleteBook, updateBook}=require('./controller/book.controller');
 
-const {seedUserCollection}=require('./models/user.model');
+const {seedBooksCollection}=require('./models/bookModel');
 
-// seedUserCollection();
+// seedBooksCollection();
 
 app.use(express.json());
+
 app.get('/books',getBooks);
 
 app.post('/book',createBook);
+app.delete('/book/:book_id',deleteBook);
+app.put('/book/:book_id', updateBook);
 
 
 const PORT = process.env.PORT || 3001;
